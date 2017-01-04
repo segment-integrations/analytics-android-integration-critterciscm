@@ -6,6 +6,34 @@ analytics-android-integration-crittercism
 
 Crittercism integration for [analytics-android](https://github.com/segmentio/analytics-android).
 
+## Installation
+
+To install the Segment-Crittercism integration, simply add this line to your gradle file:
+
+```
+compile 'com.segment.analytics.android.integrations:crittercism:+'
+```
+
+## Usage
+
+After adding the dependency, you must register the integration with our SDK.  To do this, import the Crittercism integration:
+
+
+```
+import com.segment.analytics.android.integrations.crittercism.CrittercismIntegration;
+
+```
+
+And add the following line:
+
+```
+analytics = new Analytics.Builder(this, "write_key")
+                .use(CrittercismIntegration.FACTORY)
+                .build();
+```
+
+Please see [our documentation](https://segment.com/docs/integrations/crittercism/) for more information.
+
 ## License
 
 ```
