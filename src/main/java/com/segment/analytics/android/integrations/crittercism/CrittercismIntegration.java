@@ -12,8 +12,7 @@ import com.segment.analytics.integrations.TrackPayload;
 import static com.segment.analytics.internal.Utils.isNullOrEmpty;
 
 /**
- * Crittercism is an error reporting tool for your mobile apps. Any time your app crashes or
- * errors.
+ * Crittercism is an error reporting tool for your mobile apps. Any time your app crashes or errors.
  * Crittercism will collect logs that will help you debug the problem and fix your app.
  *
  * @see <a href="http://crittercism.com">Crittercism</a>
@@ -21,15 +20,18 @@ import static com.segment.analytics.internal.Utils.isNullOrEmpty;
  * @see <a href="http://docs.crittercism.com/android/android.html">Crittercism Android SDK</a>
  */
 public class CrittercismIntegration extends Integration<Void> {
-  public static final Factory FACTORY = new Factory() {
-    @Override public Integration<?> create(ValueMap settings, Analytics analytics) {
-      return new CrittercismIntegration(analytics, settings);
-    }
+  public static final Factory FACTORY =
+      new Factory() {
+        @Override
+        public Integration<?> create(ValueMap settings, Analytics analytics) {
+          return new CrittercismIntegration(analytics, settings);
+        }
 
-    @Override public String key() {
-      return CRITTERCISM_KEY;
-    }
-  };
+        @Override
+        public String key() {
+          return CRITTERCISM_KEY;
+        }
+      };
   private static final String CRITTERCISM_KEY = "Crittercism";
 
   CrittercismIntegration(Analytics analytics, ValueMap settings) {
@@ -52,27 +54,32 @@ public class CrittercismIntegration extends Integration<Void> {
     Crittercism.initialize(analytics.getApplication(), settings.getString("appId"), config);
   }
 
-  @Override public Void getUnderlyingInstance() {
+  @Override
+  public Void getUnderlyingInstance() {
     return null;
   }
 
-  @Override public void identify(IdentifyPayload identify) {
+  @Override
+  public void identify(IdentifyPayload identify) {
     super.identify(identify);
     Crittercism.setUsername(identify.userId());
     Crittercism.setMetadata(identify.traits().toJsonObject());
   }
 
-  @Override public void screen(ScreenPayload screen) {
+  @Override
+  public void screen(ScreenPayload screen) {
     super.screen(screen);
     Crittercism.leaveBreadcrumb(String.format("Viewed %s Screen", screen.event()));
   }
 
-  @Override public void track(TrackPayload track) {
+  @Override
+  public void track(TrackPayload track) {
     super.track(track);
     Crittercism.leaveBreadcrumb(track.event());
   }
 
-  @Override public void flush() {
+  @Override
+  public void flush() {
     super.flush();
     Crittercism.sendAppLoadData();
   }
