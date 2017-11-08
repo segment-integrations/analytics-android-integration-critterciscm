@@ -34,16 +34,15 @@ dependencies {
   }
 
   provided 'com.segment.analytics.android:analytics:4.0.0'
+  testCompile 'com.segment.analytics.android:analytics-tests:4.0.0'
 
-  compile 'com.crittercism:crittercism-android-agent:5.4.0'
+  compile 'com.crittercism:crittercism-android-agent:5.8.7'
 
   testCompile 'junit:junit:4.12'
   testCompile('org.robolectric:robolectric:3.3.2') {
     exclude group: 'commons-logging', module: 'commons-logging'
     exclude group: 'org.apache.httpcomponents', module: 'httpclient'
   }
-
-  testCompile 'com.segment.analytics.android:analytics-tests:4.0.0'
 
   testCompile 'org.assertj:assertj-core:1.7.1'
 
